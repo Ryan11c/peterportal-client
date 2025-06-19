@@ -32,6 +32,36 @@
     width: 100%;
     margin: 0;
   }
+
+  .sidebar-divider {
+    width: 8px;
+    background: linear-gradient(to bottom, #e0e0e0 60%, #bdbdbd 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  .sidebar-collapse-btn {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #c9d1fb;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .sidebar-collapse-btn:hover {
+    background: #e3f2fd;
+  }
 }
 
 .search-body,

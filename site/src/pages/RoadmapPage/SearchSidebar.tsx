@@ -34,7 +34,8 @@ const CloseRoadmapSearchButton = () => {
   );
 };
 
-const SearchSidebar = () => {
+// Accept collapsed as a prop
+const SearchSidebar = ({ collapsed = false }: { collapsed?: boolean }) => {
   const isMobile = useIsMobile();
   const isLoggedIn = useIsLoggedIn();
   const showSearch = useAppSelector((state) => state.roadmap.showSearch);
@@ -62,17 +63,23 @@ const SearchSidebar = () => {
   return (
     <>
       {isMobile && showSearch && <UIOverlay onClick={closeSearch} zIndex={449} passedRef={overlayRef} />}
-      <div className={`side-panel search-sidebar ${isMobile ? 'mobile' : ''}`} ref={sidebarRef}>
-        <RequirementsListSelector />
-
-        {selectedCourseList === 'Major' && <MajorSelector />}
-        {selectedCourseList === 'Minor' && <MinorSelector />}
-        {selectedCourseList === 'GE' && <GERequiredCourseList />}
-        {selectedCourseList === 'Search' && <AllCourseSearch />}
-
-        <CloseRoadmapSearchButton />
+      <div
+        className={`side-panel search-sidebar${isMobile ? ' mobile' : ''}${collapsed ? ' collapsed' : ''}`}
+        ref={sidebarRef}
+      >
+        {/* Remove collapse button from here, now handled by parent */}
+        {!collapsed && (
+          <>
+            <RequirementsListSelector />
+            {selectedCourseList === 'Major' && <MajorSelector />}
+            {selectedCourseList === 'Minor' && <MinorSelector />}
+            {selectedCourseList === 'GE' && <GERequiredCourseList />}
+            {selectedCourseList === 'Search' && <AllCourseSearch />}
+            <CloseRoadmapSearchButton />
+          </>
+        )}
       </div>
-      {!isMobile && <TransferCreditsMenu />}
+      {!isMobile && !collapsed && <TransferCreditsMenu />}
     </>
   );
 };

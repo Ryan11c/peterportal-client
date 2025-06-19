@@ -58,3 +58,13 @@ h3.coursebag-title {
   display: flex;
   justify-content: center;
 }
+
+.search-sidebar.collapsed {
+  width: 10px !important;
+  min-width: 10px !important;
+  max-width: 10px !important;
+  overflow: hidden;
+  transition: width 0.2s;
+  position: relative;
+  padding: 0;
+}
